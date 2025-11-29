@@ -11,8 +11,8 @@ export default function SalesPage() {
       className="mx-auto max-w-6xl p-6"
     >
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-800">Sales Dashboard</h1>
-        <p className="text-gray-600 mt-2">Manage and track your sales data</p>
+        <h1 className="text-2xl font-bold text-foreground">Sales Dashboard</h1>
+        <p className="text-muted-foreground mt-2">Manage and track your sales data</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
@@ -27,29 +27,29 @@ export default function SalesPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * index }}
-            className="rounded-lg border bg-white p-6 shadow-sm"
+            className="rounded-lg border border-border bg-card p-6 shadow-sm"
           >
-            <h3 className="text-lg font-medium text-gray-700">{stat.title}</h3>
-            <p className="mt-2 text-2xl font-bold text-indigo-600">{stat.value}</p>
-            <p className="mt-2 text-sm text-green-500">{stat.change} from last month</p>
+            <h3 className="text-lg font-medium text-muted-foreground">{stat.title}</h3>
+            <p className="mt-2 text-2xl font-bold text-foreground">{stat.value}</p>
+            <p className="mt-2 text-sm text-muted-foreground">{stat.change} from last month</p>
           </motion.div>
         ))}
       </div>
 
-      <div className="rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-medium text-gray-800 mb-4">Recent Sales</h2>
+      <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
+        <h2 className="text-lg font-medium text-foreground mb-4">Recent Sales</h2>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-border">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Order ID</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Customer</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Date</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Amount</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-card divide-y divide-border">
               {[
                 { id: '#ORD-001', customer: 'John Doe', date: '2023-05-15', amount: '$120.00', status: 'Completed' },
                 { id: '#ORD-002', customer: 'Jane Smith', date: '2023-05-14', amount: '$85.50', status: 'Completed' },
@@ -63,10 +63,10 @@ export default function SalesPage() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.15 * index }}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{order.id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.customer}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.amount}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{order.id}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{order.customer}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{order.date}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{order.amount}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                       order.status === 'Completed' ? 'bg-green-100 text-green-800' :

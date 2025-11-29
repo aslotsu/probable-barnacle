@@ -25,20 +25,21 @@ export default function DashboardSectionLayout({ children }: DashboardSectionLay
     { id: 'preorders', label: 'Preorders', href: '/dashboard/preorders' },
     { id: 'events', label: 'Events', href: '/dashboard/events' },
     { id: 'books', label: 'Books', href: '/dashboard/books' },
+    { id: 'forms', label: 'Forms', href: '/dashboard/forms' },
   ];
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50">
-        <header className="border-b bg-white">
+      <div className="min-h-screen bg-background">
+        <header className="border-b border-border bg-card">
           <div className="px-4 py-3 md:py-4">
             <div className="flex items-center justify-between">
-              <h1 className="text-xl md:text-2xl font-bold text-indigo-800">Admin Dashboard</h1>
+              <h1 className="text-xl md:text-2xl font-bold text-foreground">Admin Dashboard</h1>
               <div className="flex items-center gap-2 md:gap-4">
-                <span className="hidden sm:inline text-xs md:text-sm text-gray-700">Welcome, {user?.name || user?.email}</span>
+                <span className="hidden sm:inline text-xs md:text-sm text-muted-foreground">Welcome, {user?.name || user?.email}</span>
                 <button
                   onClick={handleLogout}
-                  className="rounded-md bg-red-500 px-3 py-2 text-xs md:text-sm md:px-4 text-white hover:bg-red-600"
+                  className="rounded-md bg-destructive px-3 py-2 text-xs md:text-sm md:px-4 text-destructive-foreground hover:bg-destructive/90"
                 >
                   Logout
                 </button>

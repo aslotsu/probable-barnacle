@@ -11,8 +11,8 @@ export default function BooksPage() {
       className="mx-auto max-w-6xl p-6"
     >
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-800">Books Management</h1>
-        <p className="text-gray-600 mt-2">Manage your book inventory and content</p>
+        <h1 className="text-2xl font-bold text-foreground">Books Management</h1>
+        <p className="text-muted-foreground mt-2">Manage your book inventory and content</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
@@ -27,36 +27,36 @@ export default function BooksPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * index }}
-            className="rounded-lg border bg-white p-6 shadow-sm"
+            className="rounded-lg border border-border bg-card p-6 shadow-sm"
           >
-            <h3 className="text-lg font-medium text-gray-700">{stat.title}</h3>
-            <p className="mt-2 text-2xl font-bold text-indigo-600">{stat.value}</p>
-            <p className="mt-2 text-sm text-green-500">{stat.change} from last month</p>
+            <h3 className="text-lg font-medium text-muted-foreground">{stat.title}</h3>
+            <p className="mt-2 text-2xl font-bold text-foreground">{stat.value}</p>
+            <p className="mt-2 text-sm text-muted-foreground">{stat.change} from last month</p>
           </motion.div>
         ))}
       </div>
 
-      <div className="rounded-lg border bg-white p-6 shadow-sm">
+      <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-medium text-gray-800">Book Inventory</h2>
-          <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+          <h2 className="text-lg font-medium text-foreground">Book Inventory</h2>
+          <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
             Add Book
           </button>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-border">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cover</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Published</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Cover</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Title</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Author</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Published</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Stock</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Price</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-card divide-y divide-border">
               {[
                 { id: 1, title: 'The Silent Echo', author: 'Robert James', published: '2023-03-15', stock: 42, price: '$24.99', cover: 'https://placehold.co/40x60' },
                 { id: 2, title: 'Midnight in Paris', author: 'Elena Rodriguez', published: '2023-01-20', stock: 28, price: '$19.99', cover: 'https://placehold.co/40x60' },
@@ -71,24 +71,24 @@ export default function BooksPage() {
                   transition={{ delay: 0.15 * index }}
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="h-10 w-6 bg-gray-200 rounded border flex items-center justify-center text-xs text-gray-500">
+                    <div className="h-10 w-6 bg-muted rounded border border-border flex items-center justify-center text-xs text-muted-foreground">
                       Cover
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{book.title}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{book.author}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{book.published}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">{book.title}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{book.author}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{book.published}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                     <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                       book.stock > 20 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
                     }`}>
                       {book.stock}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{book.price}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">{book.price}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <button className="text-indigo-600 hover:text-indigo-900 mr-3">Edit</button>
-                    <button className="text-red-600 hover:text-red-900">Delete</button>
+                    <button className="text-foreground hover:text-muted-foreground mr-3">Edit</button>
+                    <button className="text-destructive hover:text-destructive/90">Delete</button>
                   </td>
                 </motion.tr>
               ))}

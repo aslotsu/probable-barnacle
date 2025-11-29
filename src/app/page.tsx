@@ -54,22 +54,22 @@ export default function LoginPage() {
   }, [isAuthenticated, router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 p-4 font-sans">
+    <div className="flex min-h-screen items-center justify-center bg-muted p-4 font-sans">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-xl"
+        className="w-full max-w-md overflow-hidden rounded-2xl bg-card shadow-xl border border-border"
       >
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-8">
+        <div className="bg-primary px-6 py-8">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.3 }}
             className="text-center"
           >
-            <h1 className="text-3xl font-bold text-white">Admin Portal</h1>
-            <p className="mt-2 text-indigo-200">Sign in to your account</p>
+            <h1 className="text-3xl font-bold text-primary-foreground">Admin Portal</h1>
+            <p className="mt-2 text-primary-foreground/70">Sign in to your account</p>
           </motion.div>
         </div>
 
@@ -95,14 +95,14 @@ export default function LoginPage() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-foreground">
                 Email Address
               </label>
               <input
                 id="email"
                 type="email"
-                className={`mt-1 block w-full rounded-lg border px-4 py-3 focus:border-indigo-500 focus:ring-indigo-500 ${
-                  errors.email ? "border-red-500" : "border-gray-300"
+                className={`mt-1 block w-full rounded-lg border bg-background px-4 py-3 focus:border-ring focus:ring-ring focus:ring-2 ${
+                  errors.email ? "border-destructive" : "border-input"
                 }`}
                 placeholder="admin@yourdomain.com"
                 {...register("email")}
@@ -117,14 +117,14 @@ export default function LoginPage() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-foreground">
                 Password
               </label>
               <input
                 id="password"
                 type="password"
-                className={`mt-1 block w-full rounded-lg border px-4 py-3 focus:border-indigo-500 focus:ring-indigo-500 ${
-                  errors.password ? "border-red-500" : "border-gray-300"
+                className={`mt-1 block w-full rounded-lg border bg-background px-4 py-3 focus:border-ring focus:ring-ring focus:ring-2 ${
+                  errors.password ? "border-destructive" : "border-input"
                 }`}
                 placeholder="••••••••"
                 {...register("password")}
@@ -144,14 +144,14 @@ export default function LoginPage() {
                 <input
                   id="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-input text-primary focus:ring-ring"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-foreground">
                   Remember me
                 </label>
               </div>
               <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="#" className="font-medium text-foreground hover:text-muted-foreground">
                   Forgot password?
                 </a>
               </div>
@@ -162,7 +162,7 @@ export default function LoginPage() {
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isLoading}
-              className="w-full rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-3 font-medium text-white shadow-md hover:from-indigo-700 hover:to-purple-700 disabled:opacity-70"
+              className="w-full rounded-lg bg-primary px-4 py-3 font-medium text-primary-foreground shadow-md hover:bg-primary/90 disabled:opacity-70"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center">
@@ -198,7 +198,7 @@ export default function LoginPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
-            className="mt-6 text-center text-sm text-gray-600"
+            className="mt-6 text-center text-sm text-muted-foreground"
           >
             <p>
               Secured Admin Portal - Only authorized personnel allowed
