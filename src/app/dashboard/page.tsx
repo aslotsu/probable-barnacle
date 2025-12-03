@@ -3,11 +3,43 @@
 import { useAuthStore } from "@/lib/authStore";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import HorizontalNav from "@/components/HorizontalNav";
 
 export default function Dashboard() {
   const { user, logout } = useAuthStore();
   const router = useRouter();
+  const [stats, setStats] = useState({
+    totalForms: 0,
+    totalPreorders: 0,
+    totalContacts: 0,
+    isLoading: true,
+  });
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const response = await fetch('https://api.monkreflections.com/api/forms');
+        if (response.ok) {
+          const allForms = await response.json();
+          const preorders = allForms.filter((form: any) => form.title.includes('Preorder'));
+          const contacts = allForms.filter((form: any) => form.title.includes('Contact'));
+
+          setStats({
+            totalForms: allForms.length,
+            totalPreorders: preorders.length,
+            totalContacts: contacts.length,
+            isLoading: false,
+          });
+        }
+      } catch (error) {
+        console.error('Failed to fetch stats:', error);
+        setStats(prev => ({ ...prev, isLoading: false }));
+      }
+    }
+
+    fetchStats();
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -59,20 +91,36 @@ export default function Dashboard() {
 
           <div className="mt-6 grid grid-cols-1 gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: "Users", count: "1,234", change: "+12%" },
-              { title: "Orders", count: "567", change: "+5%" },
-              { title: "Revenue", count: "$32,450", change: "+8.2%" },
+              {
+                title: "Total Submissions",
+                count: stats.isLoading ? "..." : stats.totalForms.toString(),
+                change: "All form submissions",
+                link: "/dashboard/forms"
+              },
+              {
+                title: "Preorders",
+                count: stats.isLoading ? "..." : stats.totalPreorders.toString(),
+                change: "Book preorder requests",
+                link: "/dashboard/preorders"
+              },
+              {
+                title: "Contact Forms",
+                count: stats.isLoading ? "..." : stats.totalContacts.toString(),
+                change: "Customer inquiries",
+                link: "/dashboard/forms"
+              },
             ].map((item, index) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
-                className="rounded-lg border border-border bg-card p-4 shadow-sm"
+                className="rounded-lg border border-border bg-card p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                onClick={() => router.push(item.link)}
               >
                 <h3 className="text-base md:text-lg font-medium text-muted-foreground">{item.title}</h3>
                 <p className="mt-2 text-xl md:text-2xl font-bold text-foreground">{item.count}</p>
-                <p className="mt-1 text-xs md:text-sm text-muted-foreground">{item.change} from last month</p>
+                <p className="mt-1 text-xs md:text-sm text-muted-foreground">{item.change}</p>
               </motion.div>
             ))}
           </div>

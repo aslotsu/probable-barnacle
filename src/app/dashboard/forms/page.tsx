@@ -24,14 +24,32 @@ export default function FormsPage() {
   const fetchForms = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch('/api/forms');
+      const response = await fetch('https://api.monkreflections.com/api/forms');
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
-      setForms(data);
+      const rawData = await response.json();
+
+      // Filter for contact form submissions (not preorders)
+      const contactForms = rawData
+        .filter((form: any) => form.title.includes('Contact'))
+        .map((form: any) => {
+          const data = JSON.parse(form.data);
+          return {
+            id: form.id.toString(),
+            name: data.name,
+            email: data.email,
+            subject: data.subject || 'Contact Form',
+            message: data.message,
+            createdAt: form.created_at,
+            date: form.created_at,
+            status: 'pending',
+          };
+        });
+
+      setForms(contactForms);
       setError(null);
     } catch (err) {
       console.error('Error fetching forms:', err);
